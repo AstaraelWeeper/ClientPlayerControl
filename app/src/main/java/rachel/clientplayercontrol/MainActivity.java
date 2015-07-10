@@ -58,9 +58,12 @@ public class MainActivity extends Activity{
 
             MyClientTask myClientTask = new MyClientTask(editTextAddress
                     .getText().toString(), Integer.parseInt(editTextPort
-                    .getText().toString()),
+                    .getText().toString()), //need to save these in shared preferences for access
                     connection);
             myClientTask.execute();
+
+            Intent intent = new Intent(this, PlayerControlActivity.class);
+            StartActivity(Intent); //not resolving?? //should this go here, or in the post execute? needs to only happen for the connect message though...
         }
     };
 

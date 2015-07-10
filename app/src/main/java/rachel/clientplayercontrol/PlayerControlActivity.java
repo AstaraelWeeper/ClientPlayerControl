@@ -21,42 +21,67 @@ public class PlayerControlActivity extends ActionBarActivity {
         Button btn_stop = (Button) findViewById(R.id.btn_stop);
         Button btn_step_backwards = (Button) findViewById(R.id.btn_step_backwards);
         Button btn_step_forwards = (Button) findViewById(R.id.btn_step_forwards);
-        RadioButton btn_play_backwards = (RadioButton)findViewById(R.id.btn_play_backwards);
-        RadioButton btn_play_forwards = (RadioButton)findViewById(R.id.btn_play_forwards);
+        final RadioButton btn_play_backwards = (RadioButton)findViewById(R.id.btn_play_backwards);
+        final RadioButton btn_play_forwards = (RadioButton)findViewById(R.id.btn_play_forwards);
 
         btn_play.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                String message = "play";
+                MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                        message);
             }
         });
         btn_pause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                String message = "pause";
+                MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                        message);
             }
         });
         btn_stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                String message = "stop";
+                MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                        message);
             }
         });
         btn_step_backwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                String message = "step back";
+                MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                        message);
             }
         });
         btn_step_forwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                String message = "step forwards";
+                MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                        message);
             }
         });
         btn_play_backwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                if(btn_play_backwards.isChecked()) {
+                    String message = "play backwards";
+                    MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                            message);
+                }
             }
         });
         btn_play_forwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                if(btn_play_forwards.isChecked()) {
+                    String message = "play forwards";
+                    MyClientTask clientTask = new MyClientTask(//textAddress (SP), port (SP),
+                            message);
+                }
             }
         });
 
