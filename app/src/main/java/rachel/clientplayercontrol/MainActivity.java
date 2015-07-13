@@ -2,6 +2,7 @@ package rachel.clientplayercontrol;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         context = this;
         activity = this;
+        listener = this;
 
 
 
@@ -55,7 +57,7 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
 
         @Override
         public void onClick(View arg0) {
-            String connection = "Connection_Active";
+            String connection = "CONNECTION_ACTIVE_WIFI";
             String address = editTextAddress
                     .getText().toString();
             String port = editTextPort
@@ -71,8 +73,8 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
                     connection,listener, context);
             myClientTask.execute();
 
-            //Intent intent = new Intent(context, PlayerControlActivity.class);
-            //startActivity(intent); //not resolving?? //should this go here, or in the post execute? needs to only happen for the connect message though...
+            Intent intent = new Intent(context, PlayerControlActivity.class);
+            startActivity(intent); //not resolving?? //should this go here, or in the post execute? needs to only happen for the connect message though...
         }
     };
 
