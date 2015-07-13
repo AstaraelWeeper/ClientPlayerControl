@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,14 +14,15 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements MyClientTask.Listener{
 
-    TextView textResponse;
+    TextView textResponse, textLogs;
     EditText editTextAddress, editTextPort;
-    Button buttonConnect, buttonClear;
+    Button buttonConnect, buttonRepairWifi, buttonClear;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     Context context;
     MyClientTask.Listener listener;
     Activity activity;
+    WifiManager wifiManager;
 
     EditText welcomeMsg;
 
@@ -32,6 +34,7 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
         context = this;
         activity = this;
         listener = this;
+        wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
 
 
 
@@ -39,9 +42,12 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
         editTextPort = (EditText) findViewById(R.id.port);
         buttonConnect = (Button) findViewById(R.id.connect);
         buttonClear = (Button) findViewById(R.id.clear);
+        buttonRepairWifi = (Button) findViewById(R.id.btn_repair);
         textResponse = (TextView) findViewById(R.id.response);
+        textLogs = (TextView) findViewById(R.id.textView2);
 
         buttonConnect.setOnClickListener(buttonConnectOnClickListener);
+        buttonRepairWifi.setOnClickListener(buttonRepairWifiOnClickListener);
 
         buttonClear.setOnClickListener(new OnClickListener() {
 
@@ -53,6 +59,27 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
 
     }
 
+    OnClickListener buttonRepairWifiOnClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View arg0) {
+            wifiManager.setWifiEnabled(false);
+            wifiManager.setWifiEnabled(true);
+            boolean wifiEnabled = wifiManager.isWifiEnabled();
+
+            if(wifiEnabled)
+            {
+                textLogs.setText("WiFi reconnected");
+            }
+            else {
+                textLogs.setText("WiFi repair failed");
+            }
+
+
+
+
+        }
+    };
+
     OnClickListener buttonConnectOnClickListener = new OnClickListener() {
 
         @Override
@@ -62,6 +89,8 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
                     .getText().toString();
             String port = editTextPort
                     .getText().toString();
+
+            textLogs.setText(address);
 
             SharedPreferences.Editor editor = sharedpreferences.edit();
 
@@ -73,13 +102,18 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
                     connection,listener, context);
             myClientTask.execute();
 
-            Intent intent = new Intent(context, PlayerControlActivity.class);
-            startActivity(intent); //not resolving?? //should this go here, or in the post execute? needs to only happen for the connect message though...
+
         }
     };
 
     @Override
-    public void onWifiMessageReturned(String string) {
+    public void onWifiMessageReturned(String string, String address) {
           //handle message here
+        textResponse.setText(string);
+        textLogs.setText(address);
+        if(string.contains("CONNECTION_ACTIVE_WIFI")) {
+            Intent intent = new Intent(context, PlayerControlActivity.class);
+            startActivity(intent);
+        }
     }
 }

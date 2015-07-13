@@ -3,9 +3,13 @@ package rachel.clientplayercontrol;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -16,7 +20,7 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
 
     String dstAddress;
     int dstPort;
-    String response = "";
+    String response;
     String msgToServer;
     Listener listener;
     Context context;
@@ -37,7 +41,8 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
         DataInputStream dataInputStream = null;
 
         try {
-            socket = new Socket(dstAddress, dstPort);
+            socket = new Socket();
+            socket.connect(new InetSocketAddress(dstAddress, dstPort), 2500);
             dataOutputStream = new DataOutputStream(
                     socket.getOutputStream());
             dataInputStream = new DataInputStream(socket.getInputStream());
@@ -46,7 +51,17 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
                 dataOutputStream.writeUTF(msgToServer);
             }
 
-            response = dataInputStream.readUTF();
+            InputStream inputStream = socket.getInputStream();
+
+            InputStreamReader is = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(is);
+
+            String currentLine;
+
+            while ((currentLine = bufferedReader.readLine()) != null) {
+                response += currentLine;
+            }
+
 
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
@@ -90,13 +105,13 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         //textResponse.setText(response);
-        listener.onWifiMessageReturned(response);
+        listener.onWifiMessageReturned(response, dstAddress);
         super.onPostExecute(result);
     }
 
     public interface Listener
     {
-        void onWifiMessageReturned(String string);
+        void onWifiMessageReturned(String string, String address);
     }
 
 }

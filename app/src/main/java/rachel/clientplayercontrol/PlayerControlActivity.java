@@ -41,50 +41,56 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
         btn_play.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String message = "play";
+                String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Play\"}";
                 MyClientTask clientTask = new MyClientTask(IPaddress, port,
                         message, listener, context);
+                clientTask.execute();
             }
         });
         btn_pause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String message = "pause";
+                String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Pause\"}";
                 MyClientTask clientTask = new MyClientTask(IPaddress, port,
                         message, listener, context);
+                clientTask.execute();
             }
         });
         btn_stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String message = "stop";
+                String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Stop\"}";
                 MyClientTask clientTask = new MyClientTask(IPaddress, port,
                         message, listener, context);
+                clientTask.execute();
             }
         });
         btn_step_backwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String message = "step back";
+                String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Step Back\"}";
                 MyClientTask clientTask = new MyClientTask(IPaddress, port,
                         message, listener, context);
+                clientTask.execute();
             }
         });
         btn_step_forwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String message = "step forwards";
+                String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Step Forwards\"}";
                 MyClientTask clientTask = new MyClientTask(IPaddress, port,
                         message, listener, context);
+                clientTask.execute();
             }
         });
         btn_play_backwards.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
                 if(btn_play_backwards.isChecked()) {
-                    String message = "play backwards";
+                    String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Play Backwards\"}";
                     MyClientTask clientTask = new MyClientTask(IPaddress, port,
                             message, listener, context);
+                    clientTask.execute();
                 }
             }
         });
@@ -92,9 +98,10 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
             public void onClick(View v) {
                 // Perform action on click
                 if(btn_play_forwards.isChecked()) {
-                    String message = "play forwards";
+                    String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":\"Play Forwards\"}";
                     MyClientTask clientTask = new MyClientTask(IPaddress, port,
                             message, listener, context);
+                    clientTask.execute();
                 }
             }
         });
@@ -126,7 +133,7 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     }
 
     @Override
-    public void onWifiMessageReturned(String string) {
+    public void onWifiMessageReturned(String string, String address) {
         //handle message here
     }
 }

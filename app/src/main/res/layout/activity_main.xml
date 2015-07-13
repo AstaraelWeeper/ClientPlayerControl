@@ -33,6 +33,21 @@
     <TextView
         android:id="@+id/response"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text = "Waiting for incoming message..." />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logging here"
+        android:id="@+id/textView2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repair WiFi"
+        android:id="@+id/btn_repair" />
 
 </LinearLayout>
