@@ -1,5 +1,6 @@
 package rachel.clientplayercontrol;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.DataInputStream;
@@ -7,8 +8,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import rachel.clientplayercontrol.MainActivity;
 
 /**
  * Created by Rachel on 08/07/2015.
@@ -19,11 +18,15 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
     int dstPort;
     String response = "";
     String msgToServer;
+    Listener listener;
+    Context context;
 
-    MyClientTask(String addr, int port, String msgTo) {
+    MyClientTask(String addr, int port, String msgTo, Listener listenerin, Context contextIn) {
         dstAddress = addr;
         dstPort = port;
         msgToServer = msgTo;
+        listener = listenerin;
+        context = contextIn;
     }
 
     @Override
@@ -87,7 +90,13 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         //textResponse.setText(response);
+        listener.onWifiMessageReturned(response);
         super.onPostExecute(result);
+    }
+
+    public interface Listener
+    {
+        void onWifiMessageReturned(String string);
     }
 
 }
