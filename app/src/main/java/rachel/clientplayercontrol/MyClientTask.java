@@ -43,7 +43,7 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
 
         try {
             socket = new Socket();
-            socket.connect(new InetSocketAddress(dstAddress, dstPort), 2500);
+            socket.connect(new InetSocketAddress(dstAddress, dstPort), 3000);
             dataOutputStream = new DataOutputStream(
                     socket.getOutputStream());
             dataInputStream = new DataInputStream(socket.getInputStream());

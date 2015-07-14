@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,6 +72,11 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
             public void onItemClick (AdapterView<?> adapterView, View view, int position, long l) {
 
                //when clicking a thing in the list view, implement event here
+                String selectedItem = displayAdapter.getItem(position);
+                String message = "{\"messageType\":\"VideoPlayer\",\"messageBody\":" + selectedItem + "}";
+                MyClientTask clientTask = new MyClientTask(IPaddress, port,
+                        message, listener, context);
+                clientTask.execute();
 
             }
         });
@@ -193,10 +199,6 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
             e.printStackTrace();
         }
 
-    };
-
-    void useMessage()
-    {
         if(messageType == "VideoPlayer")
         {
             if(messageBody == "Playing")
@@ -206,7 +208,46 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
 
 
         }
+        else if (messageType == "list") {
+            useMessage();
+        }
+
+    };
+
+    void useMessage(){
+
+            String node_array_info = "info";
+            String node_start = "start";
+            String node_end = "end";
+            String node_ELR = "ELR";
+
+            try {
+                JSONObject jsonbody = new JSONObject(messageBody);
+                JSONArray jsonitems = jsonbody.getJSONArray(node_array_info);
+                String start;
+                String end;
+                String ELR;
+                String[] listArray = new String[jsonitems.length()];
+
+                for(int i =0; i< jsonitems.length();i++)
+                {
+                    JSONObject item = jsonitems.getJSONObject(i);
+                    start = item.getString(node_start);
+                    end = item.getString(node_end);
+                    ELR = item.getString(node_ELR);
+
+                    listArray[i] = "start: " + start + " end: " + end + " ELR: " + ELR;
+                }
+
+                displayAdapter.clear();
+                displayAdapter.addAll(listArray);
+
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
     }
+
+
 }

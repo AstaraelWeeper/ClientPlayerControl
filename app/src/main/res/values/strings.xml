@@ -6,7 +6,7 @@
     <string name="title_activity_player_control">PlayerControlActivity</string>
     <string name="pref_address_key">ip_address</string>
     <string name="pref_address_label">IP Address</string>
-    <string name="pref_address_default">10.16.0.52</string>
+    <string name="pref_address_default">192.168.2.12</string>
     <string name="pref_port_key">port</string>
     <string name="pref_port_label">Port Number</string>
     <string name="pref_port_default">15000</string>
