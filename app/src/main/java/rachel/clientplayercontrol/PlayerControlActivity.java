@@ -3,17 +3,22 @@ package rachel.clientplayercontrol;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class PlayerControlActivity extends ActionBarActivity implements MyClientTask.Listener{
@@ -27,6 +32,7 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     TextView responseView;
     String messageType;
     String messageBody;
+    private ArrayAdapter<String> displayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +50,30 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
         Button btn_step_forwards = (Button) findViewById(R.id.btn_step_forwards);
         final RadioButton btn_play_backwards = (RadioButton)findViewById(R.id.btn_play_backwards);
         final RadioButton btn_play_forwards = (RadioButton)findViewById(R.id.btn_play_forwards);
-        IPaddress = sharedpreferences.getString((getString(R.string.pref_address_key)),"");
-        port = Integer.parseInt(sharedpreferences.getString((getString(R.string.pref_port_key)), ""));
+        IPaddress = sharedpreferences.getString((getString(R.string.pref_address_key)),getString(R.string.pref_address_default));
+        port = Integer.parseInt(sharedpreferences.getString((getString(R.string.pref_port_key)), getString(R.string.pref_port_default)));
+
+        // The ArrayAdapter will take data from a source and
+        // use it to populate the ListView it's attached to.
+        displayAdapter =
+                new ArrayAdapter<String>(
+                        activity, // The current context (this activity)
+                        R.layout.list_item_layout, // The name of the layout ID.
+                        R.id.list_item_textview, // The ID of the textview to populate.
+                        new ArrayList<String>());//can pass an empty array as on start will call the method now
+
+        ListView listView = (ListView) findViewById(R.id.listView_Display);
+        listView.setAdapter(displayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            //putting in onclick item event
+            @Override
+            public void onItemClick (AdapterView<?> adapterView, View view, int position, long l) {
+
+               //when clicking a thing in the list view, implement event here
+
+            }
+        });
 
         btn_play.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -169,6 +197,16 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
 
     void useMessage()
     {
+        if(messageType == "VideoPlayer")
+        {
+            if(messageBody == "Playing")
+            {
+
+            }
+
+
+        }
+
 
     }
 }
