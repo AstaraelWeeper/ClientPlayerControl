@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 
 public class PlayerControlActivity extends ActionBarActivity implements MyClientTask.Listener{
@@ -20,6 +21,7 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     public static final String MyPREFERENCES = "MyPrefs" ;
     String IPaddress;
     Integer port;
+    TextView responseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,9 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
         setContentView(R.layout.activity_player_control);
         context = this;
         activity = this;
+        listener = this;
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        responseView = (TextView)findViewById(R.id.txtResponse);
         Button btn_play = (Button) findViewById(R.id.btn_Play);
         Button btn_pause = (Button) findViewById(R.id.btn_pause);
         Button btn_stop = (Button) findViewById(R.id.btn_stop);
@@ -133,7 +137,9 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     }
 
     @Override
-    public void onWifiMessageReturned(String string, String address) {
+    public void onWifiMessageReturned(String response, String address) {
         //handle message here
+        responseView.setText(response);
+
     }
 }

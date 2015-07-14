@@ -75,5 +75,15 @@
             android:layout_alignTop="@+id/btn_play_backwards"
             android:layout_alignRight="@+id/btn_step_forwards"
             android:layout_alignEnd="@+id/btn_step_forwards" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waiting for a response..."
+            android:id="@+id/txtResponse"
+            android:layout_below="@+id/btn_play_backwards"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="41dp" />
     </RelativeLayout>
 </RelativeLayout>
