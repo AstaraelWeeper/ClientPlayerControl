@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class PlayerControlActivity extends ActionBarActivity implements MyClientTask.Listener{
     Context context;
@@ -22,6 +25,8 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     String IPaddress;
     Integer port;
     TextView responseView;
+    String messageType;
+    String messageBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,9 +142,33 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     }
 
     @Override
-    public void onWifiMessageReturned(String response, String address) {
+    public void onWifiMessageReturned(String response) {
         //handle message here
         responseView.setText(response);
+        if(!response.contains("CONNECTION_ACTIVE_WIFI")) {
+            JSONParsing(response);
+            useMessage();
+        }
+
+    }
+    void JSONParsing(String JSON)
+    {
+        String node_messageType = "messageType";
+        String node_messageBody = "messageBody";
+
+        try {
+            JSONObject jsonobj = new JSONObject(JSON);
+            messageType = jsonobj.getString(node_messageType);
+            messageBody = jsonobj.getString(node_messageBody);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    };
+
+    void useMessage()
+    {
 
     }
 }

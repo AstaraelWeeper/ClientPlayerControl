@@ -107,10 +107,9 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
     };
 
     @Override
-    public void onWifiMessageReturned(String string, String address) {
+    public void onWifiMessageReturned(String string) {
           //handle message here
         textResponse.setText(string);
-        textLogs.setText(address);
         if(string.contains("CONNECTION_ACTIVE_WIFI")) {
             Intent intent = new Intent(context, PlayerControlActivity.class);
             startActivity(intent);

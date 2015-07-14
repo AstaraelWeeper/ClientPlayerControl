@@ -25,6 +25,7 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
     Listener listener;
     Context context;
 
+
     MyClientTask(String addr, int port, String msgTo, Listener listenerin, Context contextIn) {
         dstAddress = addr;
         dstPort = port;
@@ -105,13 +106,18 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         //textResponse.setText(response);
-        listener.onWifiMessageReturned(response, dstAddress);
+
+        response = response.replace("null", "");
+
+        listener.onWifiMessageReturned(response);
         super.onPostExecute(result);
     }
 
     public interface Listener
     {
-        void onWifiMessageReturned(String string, String address);
+        void onWifiMessageReturned(String string);
     }
+
+
 
 }

@@ -11,4 +11,7 @@
     <string name="pref_port_label">Port Number</string>
     <string name="pref_port_default">15000</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="Node_MessageType">messageType</string>
+    <string name="Node_MessageBody">messageBody</string>
+
 </resources>
