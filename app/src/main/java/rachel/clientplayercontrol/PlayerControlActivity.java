@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 
 
 public class PlayerControlActivity extends ActionBarActivity implements MyClientTask.Listener{
+    private final String LOG_TAG = PlayerControlActivity.class.getSimpleName();
     Context context;
     MyClientTask.Listener listener;
     Activity activity;
@@ -192,8 +194,10 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
         }
         else {
             if (messageType.equals("Sessions")) {
+                String[] message = messageBodyToArray();
+                Log.v(LOG_TAG, "Array result: " + message);
                 Intent intent = new Intent(context, ListViewActivity.class);
-                intent.putExtra("messageBody", messageBodyToArray());
+                intent.putExtra("messageBody", message);
                 startActivity(intent);
 
             }
@@ -202,7 +206,8 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     };
 
     String[] messageBodyToArray(){
-        String[] listArray;
+        String[] listArray = new String[0];
+
 
             String node_array_sessions = "sessions";
             String node_name = "name";
@@ -224,20 +229,14 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
                     date = item.getString(node_date);
                     list = item.getString(node_list);
 
-                    listArray[i] = "start: " + name + ", end: " + date + ", ELR: " + list;
-                    return listArray;
+                    listArray[i] = "Name: " + name + ", Date: " + date + ", List: " + list;
+
                 }
 
 
             }catch (JSONException e) {
                 e.printStackTrace();
             }
-
-        listArray = new String[0];
-        return listArray;
-
-
+            return listArray;
     }
-
-
 }
