@@ -13,5 +13,6 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="Node_MessageType">messageType</string>
     <string name="Node_MessageBody">messageBody</string>
+    <string name="title_activity_list_view">ListViewActivity</string>
 
 </resources>
