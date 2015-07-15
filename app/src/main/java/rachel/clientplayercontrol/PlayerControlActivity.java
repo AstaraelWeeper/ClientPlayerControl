@@ -179,11 +179,10 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
     public void onWifiMessageReturned(String response) {
         //handle message here
         responseView.setText(response);
-        if(!response.contains("CONNECTION_ACTIVE_WIFI")) {
-            JSONParsing(response);
-            useMessage();
-        }
+        if(response.contains("CONNECTION_ACTIVE_WIFI")) {
 
+        }
+        JSONParsing(response);
     }
     void JSONParsing(String JSON)
     {
@@ -199,22 +198,24 @@ public class PlayerControlActivity extends ActionBarActivity implements MyClient
             e.printStackTrace();
         }
 
-        if(messageType == "VideoPlayer")
+        if(messageType.equals("VideoPlayer"))
         {
-            if(messageBody == "Playing")
+            if(messageBody.equals("Playing"))
             {
 
             }
 
 
         }
-        else if (messageType == "list") {
-            useMessage();
+        else {
+            if (messageType.equals("List")) {
+                populateListView();
+            }
         }
 
     };
 
-    void useMessage(){
+    void populateListView(){
 
             String node_array_info = "info";
             String node_start = "start";
