@@ -2,7 +2,6 @@ package rachel.clientplayercontrol;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -18,7 +17,7 @@ import java.net.UnknownHostException;
  * Created by Rachel on 08/07/2015.
  */
 public class MyClientTask extends AsyncTask<Void, Void, Void> {
-    private final String LOG_TAG = MyClientTask.class.getSimpleName();
+
     String dstAddress;
     int dstPort;
     String response;
@@ -109,7 +108,6 @@ public class MyClientTask extends AsyncTask<Void, Void, Void> {
         //textResponse.setText(response);
 
         response = response.replace("null", "");
-        Log.v(LOG_TAG,"passing to onWiFiReturned");
 
         listener.onWifiMessageReturned(response);
         super.onPostExecute(result);

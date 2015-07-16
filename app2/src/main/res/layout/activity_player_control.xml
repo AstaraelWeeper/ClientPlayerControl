@@ -64,8 +64,8 @@
             android:text="Play Backwards"
             android:id="@+id/btn_play_backwards"
             android:layout_below="@+id/btn_step_backwards"
-            android:layout_toLeftOf="@+id/btn_pause"
-            android:layout_toStartOf="@+id/btn_pause" />
+            android:layout_toLeftOf="@+id/btn_step_forwards"
+            android:layout_toStartOf="@+id/btn_step_forwards" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -83,17 +83,15 @@
             android:id="@+id/txtResponse"
             android:layout_below="@+id/btn_play_backwards"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="41dp" />
 
-        <Button
+        <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Load"
-            android:id="@+id/btn_Load"
+            android:id="@+id/listView_Display"
             android:layout_below="@+id/txtResponse"
-            android:layout_toRightOf="@+id/btn_Play"
-            android:layout_toEndOf="@+id/btn_Play"
-            android:layout_marginTop="74dp" />
-
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 </GridLayout>

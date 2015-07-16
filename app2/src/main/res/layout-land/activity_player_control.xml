@@ -28,7 +28,10 @@
             android:text="Pause"
             android:id="@+id/btn_pause"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_toRightOf="@+id/btn_play_backwards"
+            android:layout_toEndOf="@+id/btn_play_backwards"
+            android:layout_marginLeft="31dp"
+            android:layout_marginStart="31dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -37,35 +40,40 @@
             android:id="@+id/btn_stop"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="46dp"
+            android:layout_marginEnd="46dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Step Backwards"
             android:id="@+id/btn_step_backwards"
-            android:layout_below="@+id/btn_Play"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="37dp" />
+
+            android:layout_above="@+id/btn_play_forwards"
+            android:layout_toLeftOf="@+id/btn_pause"
+            android:layout_toStartOf="@+id/btn_pause"
+            android:longClickable="false" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Step Forwards"
             android:id="@+id/btn_step_forwards"
-            android:layout_alignBottom="@+id/btn_step_backwards"
-            android:layout_alignRight="@+id/btn_stop"
-            android:layout_alignEnd="@+id/btn_stop" />
+            android:layout_above="@+id/btn_play_forwards"
+            android:layout_toLeftOf="@+id/btn_stop"
+            android:layout_toStartOf="@+id/btn_stop" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Play Backwards"
             android:id="@+id/btn_play_backwards"
-            android:layout_below="@+id/btn_step_backwards"
-            android:layout_toLeftOf="@+id/btn_pause"
-            android:layout_toStartOf="@+id/btn_pause" />
+            android:layout_marginLeft="46dp"
+            android:layout_marginStart="46dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -73,8 +81,8 @@
             android:text="Play Forwards"
             android:id="@+id/btn_play_forwards"
             android:layout_alignTop="@+id/btn_play_backwards"
-            android:layout_alignRight="@+id/btn_step_forwards"
-            android:layout_alignEnd="@+id/btn_step_forwards" />
+            android:layout_alignRight="@+id/btn_stop"
+            android:layout_alignEnd="@+id/btn_stop" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,17 +91,7 @@
             android:id="@+id/txtResponse"
             android:layout_below="@+id/btn_play_backwards"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load"
-            android:id="@+id/btn_Load"
-            android:layout_below="@+id/txtResponse"
-            android:layout_toRightOf="@+id/btn_Play"
-            android:layout_toEndOf="@+id/btn_Play"
-            android:layout_marginTop="74dp" />
-
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="31dp" />
     </RelativeLayout>
 </GridLayout>

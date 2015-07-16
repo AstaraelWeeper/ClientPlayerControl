@@ -6,7 +6,6 @@
     android:gravity="center_vertical"
     android:textSize="25dp"
     android:textStyle="bold"
-    android:descendantFocusability="blocksDescendants"
     android:id="@+id/list_item_textview" />
 
     <!-- This XML defines the layout of each individual element of the list view in fragment_main.xml-->
