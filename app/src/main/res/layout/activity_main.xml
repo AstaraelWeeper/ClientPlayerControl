@@ -7,18 +7,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:background="@color/orange">
 
 
     <EditText
         android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="IP Address"
         android:text="@string/pref_address_default" />
     <EditText
         android:id="@+id/port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Port Number"
         android:text = "@string/pref_port_default" />
     <Button
         android:id="@+id/connect"
@@ -36,12 +39,6 @@
         android:layout_height="wrap_content"
         android:text = "Waiting for incoming message..." />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logging here"
-        android:id="@+id/textView2" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
