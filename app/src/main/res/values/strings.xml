@@ -14,5 +14,6 @@
     <string name="Node_MessageType">messageType</string>
     <string name="Node_MessageBody">messageBody</string>
     <string name="title_activity_list_view">ListViewActivity</string>
+    <string name="action_backtosessions">Back To Sessions</string>
 
 </resources>
