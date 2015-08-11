@@ -11,6 +11,9 @@
     <string name="Node_MessageType">messageType</string>
     <string name="Node_MessageBody">messageBody</string>
     <string name="title_activity_list_view">Sessions</string>
-    <string name="action_backtosessions">Back To Sessions</string>
+    <string name="action_backtosessions"><u>Back To Sessions</u></string>
+    <string name="label_sessions"><u>Sessions</u></string>
+    <string name="label_locations"><u>Locations</u></string>
+    <string name="label_media"><u>Media</u></string>
 
 </resources>

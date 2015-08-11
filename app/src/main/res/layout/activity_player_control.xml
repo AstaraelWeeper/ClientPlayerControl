@@ -1,4 +1,4 @@
-<LinearLayout
+<FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="rachel.clientplayercontrol.PlayerControlActivity"
@@ -12,6 +12,13 @@
         android:backgroundTint="@color/orange"
         android:background="@color/orange">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:background="@color/white">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_marginTop="50dp"
@@ -22,101 +29,121 @@
             android:layout_weight="0.17">
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/btn_Play"
+                android:src="@drawable/play"
+                android:adjustViewBounds="true"
+                android:baselineAlignBottom="false"
+                android:scaleType="centerCrop"
 
-            android:gravity="center"
-            android:text="Play"
+                android:background="@color/white"
+                android:layout_marginRight="10dp" />
 
-            android:id="@+id/btn_Play"
-            />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_pause"
+                android:src="@drawable/pause"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:background="@color/white"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity = "center"
-            android:text="Pause"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/btn_pause"
-             />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_stop"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/stop"
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stop"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/btn_stop"
-
-            />
+                android:background="@color/white"
+                android:layout_marginLeft="10dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity = "center"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0.37">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity = "center"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.37"
+                android:weightSum="1">
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Step Backwards"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/btn_step_backwards"
-             />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step Backwards"
+                android:id="@+id/btn_step_backwards" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Step Forwards"
-            android:id="@+id/btn_step_forwards"
-            android:layout_marginLeft="10dp"
-            android:layout_alignBottom="@+id/btn_step_backwards"
-             />
-        </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step Forwards"
+                android:id="@+id/btn_step_forwards"
+                android:layout_marginLeft="10dp"
+                android:layout_alignBottom="@+id/btn_step_backwards"
+                 />
+            </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity = "center"
-            android:orientation="horizontal"
-            android:layout_weight="0.12">
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity = "center"
+                android:orientation="horizontal"
+                android:layout_weight="0.12">
 
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play Backwards"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/btn_play_backwards"
-            android:buttonTint="@color/black" />
+                <RadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play Forwards"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/btn_play_forwards"
-            android:buttonTint="@color/black" />
-    </LinearLayout>
+                    <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play Backwards"
+                        android:id="@+id/btn_play_backwards"
+                    android:buttonTint="@color/black"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp" />
+
+                    <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play Forwards"
+                        android:id="@+id/btn_play_forwards"
+                    android:buttonTint="@color/black"
+                        android:layout_gravity="right"
+                        android:checked="true"
+                        android:layout_marginLeft="30dp" />
+                </RadioGroup>
+
+            </LinearLayout>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:gravity = "center"
-            android:text="Waiting for a response..."
-            android:id="@+id/txtResponse" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity = "center"
+                android:text="Waiting for a response..."
+                android:id="@+id/txtResponse"
+                android:layout_marginTop="30dp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load Sessions"
-            android:id="@+id/btn_Load"
-            android:layout_marginTop="74dp"
-            android:layout_gravity="center_horizontal" />
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Load Sessions"
+                android:id="@+id/btn_Load"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="40dp" />
     </LinearLayout>
+
+</FrameLayout>
 
