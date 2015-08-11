@@ -35,14 +35,20 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
         activity = this;
         listener = this;
         wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+
+
+
         editTextAddress = (EditText) findViewById(R.id.address);
         editTextPort = (EditText) findViewById(R.id.port);
         buttonConnect = (Button) findViewById(R.id.connect);
         buttonClear = (Button) findViewById(R.id.clear);
         buttonRepairWifi = (Button) findViewById(R.id.btn_repair);
         textResponse = (TextView) findViewById(R.id.response);
+        textLogs = (TextView) findViewById(R.id.textView2);
+
         buttonConnect.setOnClickListener(buttonConnectOnClickListener);
         buttonRepairWifi.setOnClickListener(buttonRepairWifiOnClickListener);
+
         buttonClear.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -50,6 +56,7 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
                 textResponse.setText("");
             }
         });
+
     }
 
     OnClickListener buttonRepairWifiOnClickListener = new OnClickListener() {
@@ -66,6 +73,10 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
             else {
                 textLogs.setText("WiFi repair failed");
             }
+
+
+
+
         }
     };
 
@@ -79,6 +90,8 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
             String port = editTextPort
                     .getText().toString();
 
+            textLogs.setText(address);
+
             SharedPreferences.Editor editor = sharedpreferences.edit();
 
             editor.putString(getString(R.string.pref_address_key), address);
@@ -88,6 +101,8 @@ public class MainActivity extends Activity implements MyClientTask.Listener{
             MyClientTask myClientTask = new MyClientTask(address,Integer.parseInt(port), //need to save these in shared preferences for access
                     connection,listener, context);
             myClientTask.execute();
+
+
         }
     };
 

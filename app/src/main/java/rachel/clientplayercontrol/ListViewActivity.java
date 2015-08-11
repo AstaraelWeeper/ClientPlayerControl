@@ -51,8 +51,8 @@ public class ListViewActivity extends ActionBarActivity implements MyClientTask.
         activity = this;
         listener = this;
         textView = (TextView) findViewById(R.id.textView1);
-        textView.setText("Sessions");
-        textView2 = (TextView) findViewById(R.id.textView2);
+        textView.setText(getString(R.string.label_sessions));//should be initialised to "sessions"
+        textView2 = (TextView) findViewById(R.id.textView2);//should be blank
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         IPaddress = sharedpreferences.getString((getString(R.string.pref_address_key)), getString(R.string.pref_address_default));
@@ -69,10 +69,11 @@ public class ListViewActivity extends ActionBarActivity implements MyClientTask.
                         activity, // The current context (this activity)
                         R.layout.list_item_layout, // The name of the layout ID.
                         R.id.list_item_textview, // The ID of the textview to populate.
-                        sessionsArray);//can pass an empty array as on start will call the method now
+                        placeholder = new ArrayList<>());//can pass an empty array as on start will call the method now
 
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(displayAdapter);
+        displayAdapter.addAll(sessionsArray);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             //putting in onclick item event
@@ -137,6 +138,9 @@ public class ListViewActivity extends ActionBarActivity implements MyClientTask.
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id==R.id.action_backToSessions){
+            BackToSessions(sessionsArray);
         }
 
         return super.onOptionsItemSelected(item);
@@ -220,14 +224,10 @@ public class ListViewActivity extends ActionBarActivity implements MyClientTask.
             }
             locationsArray = new ArrayList<String>(Arrays.asList(locationsArrayString));
             MediaArray = new ArrayList<String>(Arrays.asList(MediaArrayString));
-            Log.v(LOG_TAG,"setting text in adapters");
-            textView.setText("Locations");
-            textView2.setText("Media");
-            System.out.println("is text set here");
+            textView.setText(getString(R.string.label_locations));//update titles to reflect new list content
+            textView2.setText(getString(R.string.label_media));
             displayAdapter.clear();
-            System.out.println("is cleared?");
             displayAdapter.addAll(locationsArray);
-            System.out.println("is updated?");
             displayAdapter2.clear();
             displayAdapter2.addAll(MediaArray);
 
@@ -237,6 +237,14 @@ public class ListViewActivity extends ActionBarActivity implements MyClientTask.
             e.printStackTrace();
         }
 
+    }
+
+    void BackToSessions(ArrayList<String> sessionsArray) {
+        textView.setText(getString(R.string.label_sessions));
+        textView2.setText("");
+        displayAdapter.clear();
+        displayAdapter2.clear();
+        displayAdapter.addAll(sessionsArray);
     }
 
 

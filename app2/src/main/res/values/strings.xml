@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ClientPlayerControl</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_player_control">PlayerControlActivity</string>
+    <string name="pref_address_key">ip_address</string>
+    <string name="pref_address_label">IP Address</string>
+    <string name="pref_address_default">192.168.2.12</string>
+    <string name="pref_port_key">port</string>
+    <string name="pref_port_label">Port Number</string>
+    <string name="pref_port_default">15000</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="Node_MessageType">messageType</string>
+    <string name="Node_MessageBody">messageBody</string>
+
+</resources>
